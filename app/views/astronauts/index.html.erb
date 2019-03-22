@@ -1,0 +1,9 @@
+<% @astronauts.each do |astronaut| %>
+  <section class='astronaut-info' id='astronaut-<%= astronaut.id %>'>
+    <ul>
+      <li>Name: <%= astronaut.name %></li>
+      <li>Age: <%= astronaut.age %></li>
+      <li>Job: <%= astronaut.job %></li>
+    </ul>
+  </section>
+<% end %>
