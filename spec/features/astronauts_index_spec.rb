@@ -23,7 +23,6 @@ RSpec.describe 'Astronauts index page', type: :feature do
       @matt.missions.create(title: 'Lexington 45', time_in_space: 5)
 
       visit astronauts_path
-      save_and_open_page
     end
 
     it 'shows a list of astronaut information' do
