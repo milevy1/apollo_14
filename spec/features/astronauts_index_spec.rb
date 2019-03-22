@@ -23,6 +23,7 @@ RSpec.describe 'Astronauts index page', type: :feature do
       @matt.missions.create(title: 'Lexington 45', time_in_space: 5)
 
       visit astronauts_path
+      save_and_open_page
     end
 
     it 'shows a list of astronaut information' do
@@ -30,12 +31,14 @@ RSpec.describe 'Astronauts index page', type: :feature do
         expect(page).to have_content('Name: Neil Armstrong')
         expect(page).to have_content('Age: 37')
         expect(page).to have_content('Job: Commander')
+        expect(page).to have_content('Total Time in Space: 175 days')
       end
 
       within "#astronaut-#{@matt.id}" do
         expect(page).to have_content('Name: Matt Levy')
         expect(page).to have_content('Age: 27')
         expect(page).to have_content('Job: Computer Programmer')
+        expect(page).to have_content('Total Time in Space: 15 days')
       end
     end
 
