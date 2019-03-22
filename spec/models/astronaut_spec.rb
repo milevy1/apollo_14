@@ -46,6 +46,26 @@ describe Astronaut, type: :model do
         expect(neil.total_time_in_space).to eq(175)
       end
 
+      it 'only returns total time for the specific astronaut' do
+        neil = Astronaut.create(
+          name: 'Neil Armstrong',
+          age: 37,
+          job: 'Commander'
+        )
+        matt = Astronaut.create(
+          name: 'Matt Levy',
+          age: 27,
+          job: 'Computer Programmer'
+        )
+
+        neil.missions.create(title: 'Apollo 13', time_in_space: 100)
+        neil.missions.create(title: 'Gemini 7', time_in_space: 25)
+        neil.missions.create(title: 'Capricorn 4', time_in_space: 50)
+
+        matt.missions.create(title: 'Turing 17', time_in_space: 5)
+
+        expect(neil.total_time_in_space).to eq(175)
+      end
     end
   end
 end
