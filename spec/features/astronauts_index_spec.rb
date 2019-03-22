@@ -13,6 +13,15 @@ RSpec.describe 'Astronauts index page', type: :feature do
         age: 27,
         job: 'Computer Programmer'
       )
+
+      @neil.missions.create(title: 'Apollo 13', time_in_space: 100)
+      @neil.missions.create(title: 'Gemini 7', time_in_space: 25)
+      @neil.missions.create(title: 'Capricorn 4', time_in_space: 50)
+
+      @matt.missions.create(title: 'Turing 17', time_in_space: 5)
+      @matt.missions.create(title: 'Aries 99', time_in_space: 5)
+      @matt.missions.create(title: 'Lexington 45', time_in_space: 5)
+
       visit astronauts_path
     end
 
@@ -36,5 +45,18 @@ RSpec.describe 'Astronauts index page', type: :feature do
       end
     end
 
+    it "show a list of the space missions' in alphabetical order for each astronaut." do
+      within "#astronaut-#{@neil.id}-missions" do
+        neil_missions_alphabetical = "Apollo 13, Capricorn 4, Gemini 7"
+
+        expect(page).to have_content(neil_missions_alphabetical)
+      end
+
+      within "#astronaut-#{@matt.id}-missions" do
+        matt_missions_alphabetical = "Aries 99, Lexington 45, Turing 17"
+
+        expect(page).to have_content(matt_missions_alphabetical)
+      end
+    end
   end
 end

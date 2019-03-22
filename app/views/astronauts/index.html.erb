@@ -9,5 +9,13 @@
       <li>Age: <%= astronaut.age %></li>
       <li>Job: <%= astronaut.job %></li>
     </ul>
+    <section class="missions" id='astronaut-<%= astronaut.id %>-missions'>
+      <h1>Missions</h1>
+      <ul>
+        <% astronaut.missions.sort_alphabetical.each do |mission| %>
+        <li><%= mission.title %>, </li>
+        <% end %>
+      </ul>
+    </section>
   </section>
 <% end %>
